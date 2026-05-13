@@ -37,15 +37,17 @@ class _StudentDetailsViewState extends State<StudentDetailsView> {
         child: Column(
           children: [
             TextFormField(
+              controller: _fnameController,
               decoration: InputDecoration(
-                hintText: "Enter Full Name", //hint text or level text
+                labelText: "Enter First Name", //hint text or level text
                 border: OutlineInputBorder(),
               ),
             ),
             _gap,
             TextFormField(
+              controller: _lnameController,
               decoration: InputDecoration(
-                hintText: "Enter Full Name", //hint text or level text
+                hintText: "Enter Last Name", //hint text or level text
                 border: OutlineInputBorder(),
               ),
             ),
@@ -65,7 +67,7 @@ class _StudentDetailsViewState extends State<StudentDetailsView> {
             ),
             _gap,
             SizedBox(
-              height: double.infinity,
+              width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
                   StudentsModel student = StudentsModel(
@@ -76,25 +78,28 @@ class _StudentDetailsViewState extends State<StudentDetailsView> {
                   setState(() {
                     lstStudents.add(student);
                   });
-                  // lstStudents.add(student);
-                  debugPrint(
-                    lstStudents.length.toString(),
-                  ); // It shows the student is successfully added
+                  // // lstStudents.add(student);
+                  // debugPrint(
+                  //   lstStudents.length.toString(),
+                  // ); // It shows the student is successfully added
                 },
                 child: Text("Add Student"),
               ),
             ),
             _gap,
             SizedBox(
-              height: double.infinity,
+              width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  showMySnackBar(context: context, message: "Student is added Successfully", color: Colors.green);
+                  showMySnackBar(
+                    context: context,
+                    message: "Student is added Successfully",
+                    color: Colors.green,
+                  );
                   Navigator.pushNamed(
                     context,
                     "/output",
                     arguments: lstStudents,
-                    
                   );
                 },
                 child: Text("View Student"),
@@ -105,9 +110,14 @@ class _StudentDetailsViewState extends State<StudentDetailsView> {
             lstStudents.isEmpty
                 ? Text("No Data")
                 // : Text("Data Xha")
-                : StudentListView(lstStudents: lstStudents),
-
-            
+                : StudentListView(
+                    lstStudents: lstStudents,
+                    onDelete: (int index) {
+                      setState(() {
+                        lstStudents.removeAt(index);
+                      });
+                    },
+                  ),
           ],
         ),
       ),

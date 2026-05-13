@@ -7,9 +7,11 @@ class StudentListView extends StatelessWidget {
   const StudentListView({
     super.key,
     required this.lstStudents,
+    required this.onDelete,
   });
 
   final List<StudentsModel> lstStudents;
+  final Function(int index) onDelete; 
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +26,12 @@ class StudentListView extends StatelessWidget {
           leading: Icon(Icons.place),
           trailing: IconButton(
             onPressed: (){
+              onDelete(index);
               showMySnackBar(context: context, message: "Student is deleted Successfully", color: Colors.red);
             }, icon: Icon(Icons.delete),
           ),
           title: Text("${lstStudents[index].fname} ${lstStudents[index].lname} "),
-          
+          subtitle: Text(lstStudents[index].cities),
     
         )
         

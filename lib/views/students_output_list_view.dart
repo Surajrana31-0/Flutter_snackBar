@@ -14,7 +14,6 @@ class _StudentOutputListViewState extends State<StudentOutputListView> {
 
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
     lstStudents =
         ModalRoute.of(context)!.settings.arguments as List<StudentsModel>;
 
@@ -24,9 +23,14 @@ class _StudentOutputListViewState extends State<StudentOutputListView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text("Details in list view"),),
       body: lstStudents.isEmpty
-          ? Center(child: Text("Data xha"))
-          : StudentListView(lstStudents: lstStudents),
+          ? Center(child: Text("Data xhaina"))
+          : StudentListView(lstStudents: lstStudents, onDelete: (int index) { 
+            setState(() {
+              lstStudents.removeAt(index);
+            });
+           },),
     );
   }
 }
