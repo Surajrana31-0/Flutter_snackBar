@@ -70,6 +70,11 @@ class _StudentDetailsViewState extends State<StudentDetailsView> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
+                  showMySnackBar(
+                    context: context,
+                    message: "Student is added Successfully",
+                    color: Colors.green,
+                  );
                   StudentsModel student = StudentsModel(
                     fname: _fnameController.text.trim(),
                     lname: _lnameController.text.trim(),
@@ -89,18 +94,17 @@ class _StudentDetailsViewState extends State<StudentDetailsView> {
             _gap,
             SizedBox(
               width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  showMySnackBar(
-                    context: context,
-                    message: "Student is added Successfully",
-                    color: Colors.green,
-                  );
-                  Navigator.pushNamed(
+              child: TextButton(
+                onPressed: () async {
+                  
+                  await Navigator.pushNamed(//this await is used to rebuilt the state when come back
                     context,
                     "/output",
                     arguments: lstStudents,
                   );
+                  setState(() {
+                    
+                  });
                 },
                 child: Text("View Student"),
               ),
