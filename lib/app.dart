@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:snackbar/views/student_card_view.dart';
 import 'package:snackbar/views/student_details_view.dart';
+import 'package:snackbar/views/student_grid_view.dart';
 import 'package:snackbar/views/students_output_list_view.dart';
 
 class App extends StatelessWidget {
@@ -13,6 +15,8 @@ class App extends StatelessWidget {
       routes: {
         "/": (context) => StudentDetailsView(),
         '/output': (context) => StudentOutputListView(),
+        "/card" :(context) => StudentCardView(),
+        "/grid" :(context)=> StudentGridView()
       },
       // home: StudentDetailsView(),
     );

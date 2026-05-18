@@ -109,6 +109,42 @@ class _StudentDetailsViewState extends State<StudentDetailsView> {
                 child: Text("View Student"),
               ),
             ),
+            _gap,
+            SizedBox(
+              width: double.infinity,
+              child: TextButton(
+                onPressed: () async {
+                  
+                  await Navigator.pushNamed(//this await is used to rebuilt the state when come back
+                    context,
+                    "/card",
+                    arguments: lstStudents,
+                  );
+                  setState(() {
+                    
+                  });
+                },
+                child: Text("card View"),
+              ),
+            ),
+            _gap,
+            SizedBox(
+              width: double.infinity,
+              child: TextButton(
+                onPressed: () async {
+                  
+                  await Navigator.pushNamed(//this await is used to rebuilt the state when come back
+                    context,
+                    "/grid",
+                    arguments: lstStudents,
+                  );
+                  setState(() {
+                    
+                  });
+                },
+                child: Text("Grid View"),
+              ),
+            ),
 
             //Display the student in list view
             lstStudents.isEmpty
